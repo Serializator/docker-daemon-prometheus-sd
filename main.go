@@ -57,7 +57,10 @@ func main() {
 func listen() {
 	filter := filters.NewArgs()
 
+	// https://docs.docker.com/engine/reference/commandline/events/#object-types
 	// TODO: also update the output if a network change occurs
+	// TODO: are "die", "stop" and "kill" the same or should we listen for all three?
+	// TODO: what does the "update" event do and can it be used to listen for network related updates
 
 	filter.Add("type", "container")
 	filter.Add("event", "start")
