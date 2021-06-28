@@ -19,6 +19,7 @@ func init() {
 		panic(err)
 	}
 
+	// TODO: consider both "config.yml" and "config.yaml"
 	config, err = NewConfig("config.yml")
 	if err != nil {
 		panic(err)

@@ -1,0 +1,15 @@
+output:
+  - file: "elasticsearch"
+    criteria:
+      labels:
+        "prometheus.monitoring.app": "elasticsearch"
+
+  - file: "redis"
+    criteria:
+      labels:
+        "prometheus.monitoring.app": "redis"
+
+  - file: "rabbitmq"
+    criteria:
+      labels:
+        "prometheus.monitoring.app": "rabbitmq"
