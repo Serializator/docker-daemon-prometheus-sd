@@ -11,6 +11,7 @@ import (
 )
 
 type Config struct {
+	// TODO: add a configuration to configure what ports to check for (e.g 9200 and not 9300 in case of Elasticsearch)
 	Output []struct {
 		File     string        `yaml:"file"`
 		Criteria MatchCriteria `yaml:"criteria"`
