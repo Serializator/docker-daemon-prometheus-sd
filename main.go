@@ -1,9 +1,9 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 
-	"github.com/go-yaml/yaml"
 	"io.serializator/docker-daemon-prometheus-sd/config"
 )
 
@@ -16,10 +16,21 @@ func main() {
 		panic(err)
 	}
 
-	data, err := yaml.Marshal(config)
-	if err != nil {
-		panic(err)
-	}
+	for _, probe := range config.Probes {
+		fmt.Printf("Search for containers ... (%v)\n", probe.Name)
 
-	fmt.Printf("%v\n", string(data))
+		containers, err := probe.List()
+		if err != nil {
+			fmt.Printf("%v\n", err.Error())
+			continue
+		}
+
+		data, err := json.Marshal(containers)
+		if err != nil {
+			fmt.Printf("%v\n", err.Error())
+			continue
+		}
+
+		fmt.Println(string(data))
+	}
 }
