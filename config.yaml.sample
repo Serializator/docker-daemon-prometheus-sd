@@ -1,0 +1,6 @@
+probes:
+  - name: "elasticsearch"
+    format: "json"
+    criteria:
+      labels:
+        "io.prometheus.exporter": "elasticsearch"
