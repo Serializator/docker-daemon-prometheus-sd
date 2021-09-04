@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  elasticsearch:
+    image: elasticsearch:7.14.1
+    restart: unless-stopped
+    environment:
+      - "discovery.type=single-node"
+    networks:
+      - app
+
+  elasticsearch_exporter:
+    image: quay.io/prometheuscommunity/elasticsearch-exporter:latest
+    command:
+      - '--es.uri=http://elasticsearch:9200'
+    restart: unless-stopped
+    labels:
+      "io.prometheus.exporter": "elasticsearch"
+    ports:
+      - "9114:9114"
+    networks:
+      - app
+
+networks:
+  app:
